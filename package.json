@@ -1,0 +1,34 @@
+{
+  "name": "ember-cli-imagemin",
+  "version": "0.1.0",
+  "description": "Minify images with imagemin.",
+  "author": "Andy Stanford-Bluntish <andy@bluntish.net>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andybluntish/ember-cli-imagemin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andybluntish/ember-cli-imagemin/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "broccoli-imagemin": "^0.2.1"
+  },
+  "keywords": [
+    "ember-addon",
+    "imagemin",
+    "compress",
+    "minify",
+    "image",
+    "img",
+    "jpeg",
+    "jpg",
+    "png",
+    "gif",
+    "svg"
+  ],
+  "ember-addon": {}
+}
