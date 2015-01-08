@@ -9,11 +9,28 @@ function EmberCLIImagemin(project) {
 
 EmberCLIImagemin.prototype.included = function included(app) {
   this.app = app;
-  this.options = this.app.options.imagemin;
+
+  var defaultOptions = {
+    enabled: this.app.env === 'production'
+  };
+
+  if (this.app.options.imagemin === false) {
+    this.options = this.app.options.imagemin = { enabled: false };
+  } else {
+    this.options = this.app.options.imagemin = this.app.options.imagemin || {};
+  }
+
+  for (var option in defaultOptions) {
+    if (!this.options.hasOwnProperty(option)) {
+      this.options[option] = defaultOptions[option];
+    }
+  }
 };
 
 EmberCLIImagemin.prototype.postprocessTree = function postprocessTree(type, tree) {
-  tree = imagemin(tree, this.options);
+  if (this.options.enabled) {
+    tree = imagemin(tree, this.options);
+  }
 
   return tree;
 };
