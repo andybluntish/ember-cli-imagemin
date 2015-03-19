@@ -1,12 +1,10 @@
-# Ember-cli-imagemin
+# Ember CLI Imagemin
 
-Minify images with imagemin. This addon is a thin wrapper around [broccoli-imagemin](https://github.com/Xulai/broccoli-imagemin).
-
+[Ember CLI](http://www.ember-cli.com) addon to minify images with imagemin. This is just a thin wrapper around [broccoli-imagemin](https://github.com/Xulai/broccoli-imagemin).
 
 ## Installation
 
-    npm install ember-cli-imagemin --save-dev
-
+    ember install:addon ember-cli-imagemin
 
 ## Options
 
@@ -39,3 +37,5 @@ Enable minification of images. Defaults to `true` in production environment, oth
     });
 
 Alternatively, you may simply set `{ imagemin: true }` as a shortcut.
+
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
