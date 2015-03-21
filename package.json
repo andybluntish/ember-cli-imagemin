@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-imagemin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Minify images with imagemin.",
   "author": "Andy Stanford-Bluntish <andy@bluntish.net>",
   "repository": {
