@@ -4,7 +4,7 @@
 
 ## Installation
 
-    ember install:addon ember-cli-imagemin
+    ember install ember-cli-imagemin
 
 ## Options
 
