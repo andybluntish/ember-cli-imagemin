@@ -5,6 +5,7 @@ var imagemin = require('broccoli-imagemin');
 
 module.exports = {
   name: 'ember-cli-imagemin',
+
   included: function(app) {
     this.app = app;
 
@@ -24,6 +25,7 @@ module.exports = {
       }
     }
   },
+
   postprocessTree: function(type, tree) {
     if (this.options.enabled) {
       tree = imagemin(tree, this.options);
