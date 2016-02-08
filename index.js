@@ -6,19 +6,23 @@ var imagemin = require('broccoli-imagemin');
 module.exports = {
   name: 'ember-cli-imagemin',
 
-  included: function(app) {
-    this.app = app;
+  included: function() {
+    this._super.included.apply(this, arguments);
 
+    // Default options
     var defaultOptions = {
       enabled: this.app.env === 'production'
     };
 
+    // If the imagemin options key is set to `false` instead of
+    // an options object, disable the addon
     if (this.app.options.imagemin === false) {
       this.options = this.app.options.imagemin = { enabled: false };
     } else {
       this.options = this.app.options.imagemin = this.app.options.imagemin || {};
     }
 
+    // Merge the default options with the passed in options
     for (var option in defaultOptions) {
       if (!this.options.hasOwnProperty(option)) {
         this.options[option] = defaultOptions[option];
