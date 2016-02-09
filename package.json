@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-imagemin",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "description": "Minify images with imagemin.",
   "directories": {
     "doc": "doc",
