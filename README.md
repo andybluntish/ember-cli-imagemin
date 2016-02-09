@@ -9,7 +9,9 @@
 
 ## Installation
 
-    ember install ember-cli-imagemin
+```js
+ember install ember-cli-imagemin
+```
 
 ## Options
 
@@ -17,14 +19,16 @@
 
 Define options to be passed directly to `broccoli-imagemin`.
 
-    var app = new EmberApp({
-      imagemin: {
-        interlaced: true,
-        optimizationLevel: 3,
-        progressive: true,
-        lossyPNG: false
-      }
-    });
+```js
+var app = new EmberApp({
+  imagemin: {
+    interlaced: true,
+    optimizationLevel: 3,
+    progressive: true,
+    lossyPNG: false
+  }
+});
+```
 
 Read more about the options you may pass in on the [broccoli-imagemin](https://github.com/Xulai/broccoli-imagemin) page.
 
@@ -35,12 +39,21 @@ Default: `app.env === 'production'`
 
 Enable minification of images. Defaults to `true` in production environment, otherwise `false`.
 
-    var app = new EmberApp({
-      imagemin: {
-        enabled: true
-      }
-    });
+```js
+var app = new EmberApp({
+  imagemin: {
+    enabled: true
+  }
+});
+```
 
-Alternatively, you may simply set `{ imagemin: true }` as a shortcut.
+Alternatively, you may simply set the `imagemin` key to a `Boolean` value as a shortcut to enable/disable. E.g.
+
+```js
+// Enable with default options
+var app = new EmberApp({
+  imagemin: true
+});
+```
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

@@ -16,8 +16,8 @@ module.exports = {
 
     // If the imagemin options key is set to `false` instead of
     // an options object, disable the addon
-    if (this.app.options.imagemin === false) {
-      this.options = this.app.options.imagemin = { enabled: false };
+    if (typeof this.app.options.imagemin === 'boolean') {
+      this.options = this.app.options.imagemin = { enabled: this.app.options.imagemin };
     } else {
       this.options = this.app.options.imagemin = this.app.options.imagemin || {};
     }
