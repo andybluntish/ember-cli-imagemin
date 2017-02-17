@@ -6,7 +6,13 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
     imagemin: {
-      enabled: true
+      enabled: true,
+      plugins: [
+        require('imagemin-gifsicle')(),
+        require('imagemin-jpegtran')(),
+        require('imagemin-optipng')(),
+        require('imagemin-svgo')()
+      ]
     }
   });
 
