@@ -27,7 +27,7 @@ test('Image files are compressed', function(assert) {
       const uncompressedSize = uncompressedSizes[ext];
 
       $.get(url).then((data, status, xhr) => {
-        const compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10);
+        const compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10) || xhr.responseText.length;
 
         assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`);
       });
