@@ -9,30 +9,22 @@ module.exports = {
   included: function() {
     this._super.included.apply(this, arguments);
 
-    // Default options
-    var defaultOptions = {
-      enabled: this.app.env === 'production'
-    };
+    this.enabled = this.app.env === 'production'
+    this.options = this.app.options.imagemin = this.app.options.imagemin || {};
 
-    // If the imagemin options key is set to `false` instead of
-    // an options object, disable the addon
-    if (typeof this.app.options.imagemin === 'boolean') {
-      this.options = this.app.options.imagemin = { enabled: this.app.options.imagemin };
-    } else {
-      this.options = this.app.options.imagemin = this.app.options.imagemin || {};
+    if ('enabled' in this.options) {
+      this.enabled = this.options.enabled;
+      delete this.options.enabled;
     }
 
-    // Merge the default options with the passed in options
-    for (var option in defaultOptions) {
-      if (!this.options.hasOwnProperty(option)) {
-        this.options[option] = defaultOptions[option];
-      }
+    if (!this.options.plugins || this.options.plugins.length === 0) {
+      this.enabled = false;
     }
   },
 
   postprocessTree: function(type, tree) {
-    if (this.options.enabled) {
-      tree = imagemin(tree, this.options);
+    if (this.enabled) {
+      tree = new imagemin(tree, this.options);
     }
 
     return tree;

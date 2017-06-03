@@ -22,15 +22,18 @@ Define options to be passed directly to `broccoli-imagemin`.
 ```js
 var app = new EmberApp({
   imagemin: {
-    interlaced: true,
-    optimizationLevel: 3,
-    progressive: true,
-    lossyPNG: false
+    plugins: [
+      require('imagemin-jpegtran')({ progressive: true }),
+      require('imagemin-optipng')({ optimizationLevel: 3 }),
+      require('imagemin-svgo')()
+    ]
   }
 });
 ```
 
-Read more about the options you may pass in on the [broccoli-imagemin](https://github.com/Xulai/broccoli-imagemin) page.
+Note that with no plugins specified, nothing will be processed, disabling this addon.
+
+Read more about the options you may pass in on the [broccoli--imagemin](https://github.com/kanongil/broccoli-imagemin) page.
 
 ### Enabled
 
@@ -42,17 +45,11 @@ Enable minification of images. Defaults to `true` in production environment, oth
 ```js
 var app = new EmberApp({
   imagemin: {
-    enabled: true
+    enabled: true,
+    plugins: [
+      require('imagemin-jpegtran')(),
+    ]
   }
-});
-```
-
-Alternatively, you may simply set the `imagemin` key to a `Boolean` value as a shortcut to enable/disable. E.g.
-
-```js
-// Enable with default options
-var app = new EmberApp({
-  imagemin: true
 });
 ```
 
