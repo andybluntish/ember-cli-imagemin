@@ -19,7 +19,6 @@ test('Image files are compressed', function(assert) {
   visit('/');
 
   andThen(function() {
-
     // Compare the Content-Length of each image against the original
     // file size. Dummy app is setup to enable compression, so the
     // file sizes should be smaller.
@@ -30,9 +29,8 @@ test('Image files are compressed', function(assert) {
       $.get(url).then((data, status, xhr) => {
         const compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10);
 
-        assert.ok(compressedSize < uncompressedSize);
+        assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`);
       });
     });
-
   });
 });
