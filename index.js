@@ -10,7 +10,10 @@ module.exports = {
     this._super.included.apply(this, arguments);
     this.app.options.imagemin = this.app.options.imagemin || {};
 
-    if ('enabled' in this.app.options.imagemin) {
+    if (typeof this.app.options.imagemin === 'boolean') {
+      this.enabled = this.app.options.imagemin;
+      this.app.options.imagemin = {};
+    } else if ('enabled' in this.app.options.imagemin) {
       this.enabled = this.app.options.imagemin.enabled;
       delete this.app.options.imagemin.enabled;
     } else {

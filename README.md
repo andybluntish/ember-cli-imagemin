@@ -49,6 +49,15 @@ var app = new EmberApp({
 });
 ```
 
+Alternatively, you may simply set the `imagemin` key to a `Boolean` value as a shortcut to enable/disable with the default plugins. E.g.
+
+```js
+// Enable with default options
+var app = new EmberApp({
+  imagemin: true
+});
+```
+
 ### Plugins
 
 Type: `Array`  
