@@ -17,8 +17,14 @@ module.exports = {
       this.enabled = this.app.env === 'production';
     }
 
-    if (!this.app.options.imagemin.plugins || this.app.options.imagemin.plugins.length === 0) {
-      this.enabled = false;
+    // if addon is enabled but no plugins have been specified, use a default set
+    if (this.enabled && (!this.app.options.imagemin.plugins || this.app.options.imagemin.plugins.length === 0)) {
+      this.app.options.imagemin.plugins = [
+        require('imagemin-gifsicle')({ interlaced: true }),
+        require('imagemin-jpegtran')({ progressive: true }),
+        require('imagemin-optipng')(),
+        require('imagemin-svgo')()
+      ];
     }
   },
 
