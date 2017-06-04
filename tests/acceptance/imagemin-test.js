@@ -27,7 +27,13 @@ test('Image files are compressed', function(assert) {
       const uncompressedSize = uncompressedSizes[ext];
 
       $.get(url).then((data, status, xhr) => {
-        const compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10) || xhr.responseText.length;
+        let compressedSize;
+
+        if (ext === 'svg') {
+          compressedSize = xhr.responseText.length;
+        } else {
+          compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10);
+        }
 
         assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`);
       });
