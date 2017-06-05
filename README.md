@@ -9,7 +9,7 @@
 
 ## Installation
 
-```js
+```sh
 ember install ember-cli-imagemin
 ```
 
@@ -17,23 +17,22 @@ ember install ember-cli-imagemin
 
 ### Broccoli Imagemin options
 
-Define options to be passed directly to `broccoli-imagemin`.
+Define options to be passed directly to [broccoli-imagemin](https://github.com/kanongil/broccoli-imagemin).
 
 ```js
 var app = new EmberApp({
   imagemin: {
     plugins: [
+      require('imagemin-gifsicle')({ interlaced: true }),
       require('imagemin-jpegtran')({ progressive: true }),
-      require('imagemin-optipng')({ optimizationLevel: 3 }),
+      require('imagemin-optipng')(),
       require('imagemin-svgo')()
     ]
   }
 });
 ```
 
-Note that with no plugins specified, nothing will be processed, disabling this addon.
-
-Read more about the options you may pass in on the [broccoli--imagemin](https://github.com/kanongil/broccoli-imagemin) page.
+Read more about the options you may pass in on the [broccoli-imagemin](https://github.com/kanongil/broccoli-imagemin) page.
 
 ### Enabled
 
@@ -45,12 +44,41 @@ Enable minification of images. Defaults to `true` in production environment, oth
 ```js
 var app = new EmberApp({
   imagemin: {
-    enabled: true,
-    plugins: [
-      require('imagemin-jpegtran')(),
-    ]
+    enabled: true
   }
 });
 ```
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+Alternatively, you may simply set the `imagemin` key to a `Boolean` value as a shortcut to enable/disable with the default plugins. E.g.
+
+```js
+// Enable with default options
+var app = new EmberApp({
+  imagemin: true
+});
+```
+
+### Plugins
+
+Type: `Array`  
+Default:
+
+```js
+plugins: [
+  require('imagemin-gifsicle')({ interlaced: true }),
+  require('imagemin-jpegtran')({ progressive: true }),
+  require('imagemin-optipng')(),
+  require('imagemin-svgo')()
+]
+```
+
+Imagemin plugins, and configuration options, used to compress images. Each [imagemin plugin](https://www.npmjs.com/browse/keyword/imageminplugin) needs to be installed into your project via `npm`. Specifying plugins will _replace_ the default list. If you wish to _extend_, the list don't forget to include _all_ plugins you wish to use.
+
+```js
+var app = new EmberApp({
+  plugins: [
+    require('imagemin-webp')(),
+    require('imagemin-svgo')()
+  ]
+});
+```
