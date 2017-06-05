@@ -77,7 +77,7 @@ Imagemin plugins, and configuration options, used to compress images. Each [imag
 ```js
 var app = new EmberApp({
   plugins: [
-    require('imagemin-webp')(),
+    require('imagemin-pngquant')(),
     require('imagemin-svgo')()
   ]
 });
