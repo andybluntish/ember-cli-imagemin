@@ -9,7 +9,7 @@
 
 ## Installation
 
-```js
+```sh
 ember install ember-cli-imagemin
 ```
 
@@ -63,7 +63,7 @@ var app = new EmberApp({
 Type: `Array`  
 Default:
 
-```
+```js
 plugins: [
   require('imagemin-gifsicle')({ interlaced: true }),
   require('imagemin-jpegtran')({ progressive: true }),
@@ -72,6 +72,13 @@ plugins: [
 ]
 ```
 
-Imagemin plugins and options used to compress images.
+Imagemin plugins, and configuration options, used to compress images. Each [imagemin plugin](https://www.npmjs.com/browse/keyword/imageminplugin) needs to be installed into your project via `npm`. Specifying plugins will _replace_ the default list. If you wish to _extend_, the list don't forget to include _all_ plugins you wish to use.
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```js
+var app = new EmberApp({
+  plugins: [
+    require('imagemin-webp')(),
+    require('imagemin-svgo')()
+  ]
+});
+```
