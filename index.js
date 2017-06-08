@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
 
 var imagemin = require('broccoli-imagemin');
@@ -8,31 +8,32 @@ module.exports = {
 
   included: function() {
     this._super.included.apply(this, arguments);
+    this.app.options.imagemin = this.app.options.imagemin || {};
 
-    // Default options
-    var defaultOptions = {
-      enabled: this.app.env === 'production'
-    };
-
-    // If the imagemin options key is set to `false` instead of
-    // an options object, disable the addon
     if (typeof this.app.options.imagemin === 'boolean') {
-      this.options = this.app.options.imagemin = { enabled: this.app.options.imagemin };
+      this.enabled = this.app.options.imagemin;
+      this.app.options.imagemin = {};
+    } else if ('enabled' in this.app.options.imagemin) {
+      this.enabled = this.app.options.imagemin.enabled;
+      delete this.app.options.imagemin.enabled;
     } else {
-      this.options = this.app.options.imagemin = this.app.options.imagemin || {};
+      this.enabled = this.app.env === 'production';
     }
 
-    // Merge the default options with the passed in options
-    for (var option in defaultOptions) {
-      if (!this.options.hasOwnProperty(option)) {
-        this.options[option] = defaultOptions[option];
-      }
+    // if addon is enabled but no plugins have been specified, use a default set
+    if (this.enabled && (!this.app.options.imagemin.plugins || this.app.options.imagemin.plugins.length === 0)) {
+      this.app.options.imagemin.plugins = [
+        require('imagemin-gifsicle')({ interlaced: true }),
+        require('imagemin-jpegtran')({ progressive: true }),
+        require('imagemin-optipng')(),
+        require('imagemin-svgo')()
+      ];
     }
   },
 
   postprocessTree: function(type, tree) {
-    if (this.options.enabled) {
-      tree = imagemin(tree, this.options);
+    if (this.enabled) {
+      tree = new imagemin(tree, this.app.options.imagemin);
     }
 
     return tree;
