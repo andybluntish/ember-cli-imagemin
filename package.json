@@ -55,9 +55,9 @@
     "svg"
   ],
   "dependencies": {
-    "broccoli-imagemin": "^1.0.0",
     "ember-cli-babel": "^6.0.0",
-    "imagemin-gifsicle": "^5.1.0",
+    "broccoli-imagemin": "^1.0.1",
+    "imagemin-gifsicle": "^5.2.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.2.1",
     "imagemin-svgo": "^6.0.0"
