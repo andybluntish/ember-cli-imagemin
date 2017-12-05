@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import $ from 'jquery';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
-
-const { $ } = Ember;
 
 // Original images sizes (from AJAX Content-Length header)
 const uncompressedSizes = {
