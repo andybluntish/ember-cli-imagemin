@@ -1,40 +1,64 @@
-import $ from 'jquery';
-import { test } from 'qunit';
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import { visit } from '@ember/test-helpers'
+import { module, test } from 'qunit'
+import { setupApplicationTest } from 'ember-qunit'
 
 // Original images sizes (from AJAX Content-Length header)
 const uncompressedSizes = {
-  'jpg': 35863,
-  'png': 11795,
-  'svg': 4619
-};
+  jpg: 35863,
+  png: 11795,
+  svg: 4619,
+}
 
-moduleForAcceptance('Acceptance | imagemin');
+// Compare the Content-Length of each image against the original
+// file size. Dummy app is setup to enable compression, so the
+// file sizes should be smaller.
+async function fetchImageSize(ext) {
+  const url = `/logo.${ext}`
 
-test('Image files are compressed', function(assert) {
-  assert.expect(3);
+  const response = await fetch(url)
+  const body = await response.text()
+  const contentLength = await response.headers.get('Content-Length')
 
-  visit('/');
+  if (ext === 'svg') {
+    return body.length
+  } else {
+    return parseInt(contentLength, 10)
+  }
+}
 
-  andThen(function() {
-    // Compare the Content-Length of each image against the original
-    // file size. Dummy app is setup to enable compression, so the
-    // file sizes should be smaller.
-    Object.keys(uncompressedSizes).forEach((ext) => {
-      const url = `/logo.${ext}`;
-      const uncompressedSize = uncompressedSizes[ext];
+module('Acceptance | imagemin', function(hooks) {
+  setupApplicationTest(hooks)
 
-      $.get(url).then((data, status, xhr) => {
-        let compressedSize;
+  test('JPEG files are compressed', async function(assert) {
+    assert.expect(1)
 
-        if (ext === 'svg') {
-          compressedSize = xhr.responseText.length;
-        } else {
-          compressedSize = parseInt(xhr.getResponseHeader('Content-Length'), 10);
-        }
+    await visit('/')
+    const ext = 'jpg'
+    const compressedSize = await fetchImageSize(ext)
+    const uncompressedSize = uncompressedSizes[ext]
 
-        assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`);
-      });
-    });
-  });
-});
+    assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`)
+  })
+
+  test('PNG files are compressed', async function(assert) {
+    assert.expect(1)
+
+    await visit('/')
+    const ext = 'png'
+    const compressedSize = await fetchImageSize(ext)
+    const uncompressedSize = uncompressedSizes[ext]
+
+    assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`)
+  })
+
+  test('SVG files are compressed', async function(assert) {
+    assert.expect(1)
+
+    await visit('/')
+    const ext = 'svg'
+    const compressedSize = await fetchImageSize(ext)
+    const uncompressedSize = uncompressedSizes[ext]
+
+    assert.ok(compressedSize < uncompressedSize, `${ext} file compressed`)
+  })
+})
