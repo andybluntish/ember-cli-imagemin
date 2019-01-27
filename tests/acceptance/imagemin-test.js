@@ -1,6 +1,7 @@
+import { visit } from '@ember/test-helpers'
 import $ from 'jquery'
-import { test } from 'qunit'
-import moduleForAcceptance from '../../tests/helpers/module-for-acceptance'
+import { module, test } from 'qunit'
+import { setupApplicationTest } from 'ember-qunit'
 
 // Original images sizes (from AJAX Content-Length header)
 const uncompressedSizes = {
@@ -9,14 +10,14 @@ const uncompressedSizes = {
   svg: 4619,
 }
 
-moduleForAcceptance('Acceptance | imagemin')
+module('Acceptance | imagemin', function(hooks) {
+  setupApplicationTest(hooks)
 
-test('Image files are compressed', function(assert) {
-  assert.expect(3)
+  test('Image files are compressed', async function(assert) {
+    assert.expect(3)
 
-  visit('/')
+    await visit('/')
 
-  andThen(function() {
     // Compare the Content-Length of each image against the original
     // file size. Dummy app is setup to enable compression, so the
     // file sizes should be smaller.
