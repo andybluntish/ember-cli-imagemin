@@ -1,10 +1,9 @@
-/* eslint-env node */
 'use strict';
 
 var imagemin = require('broccoli-imagemin');
 
 module.exports = {
-  name: 'ember-cli-imagemin',
+  name: require('./package').name,
 
   included: function() {
     this._super.included.apply(this, arguments);

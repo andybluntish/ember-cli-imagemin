@@ -1,4 +1,5 @@
-# ember-cli-imagemin
+ember-cli-imagemin
+------------------------------------------------------------------------------
 
 [![Build Status](https://travis-ci.org/andybluntish/ember-cli-imagemin.svg?branch=master)](https://travis-ci.org/andybluntish/ember-cli-imagemin)
 [![Dependency Status](https://david-dm.org/andybluntish/ember-cli-imagemin.svg)](https://david-dm.org/andybluntish/ember-cli-imagemin)
@@ -7,15 +8,28 @@
 
 [Ember CLI](http://www.ember-cli.com) addon to minify images with imagemin. This is just a thin wrapper around [broccoli-imagemin](https://github.com/kanongil/broccoli-imagemin).
 
-## Installation
 
-```sh
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
+```
 ember install ember-cli-imagemin
 ```
 
-## Options
 
-### Broccoli Imagemin options
+Usage
+------------------------------------------------------------------------------
+
+### Options
+
+#### Broccoli Imagemin options
 
 Define options to be passed directly to [broccoli-imagemin](https://github.com/kanongil/broccoli-imagemin).
 
@@ -34,7 +48,7 @@ var app = new EmberApp({
 
 Read more about the options you may pass in on the [broccoli-imagemin](https://github.com/kanongil/broccoli-imagemin) page.
 
-### Enabled
+#### Enabled
 
 Type: `Boolean`  
 Default: `app.env === 'production'`
@@ -58,7 +72,7 @@ var app = new EmberApp({
 });
 ```
 
-### Plugins
+#### Plugins
 
 Type: `Array`  
 Default:
@@ -82,3 +96,8 @@ var app = new EmberApp({
   ]
 });
 ```
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
