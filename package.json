@@ -34,7 +34,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "broccoli-imagemin": "^1.0.2",
+    "broccoli-imagemin": "^2.0.1",
     "ember-cli-babel": "^7.1.2",
     "imagemin-gifsicle": "^6.0.1",
     "imagemin-jpegtran": "^6.0.0",
@@ -70,7 +70,7 @@
     "qunit-dom": "^0.8.0"
   },
   "engines": {
-    "node": "6.* || 8.* || >= 10.*"
+    "node": "8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
