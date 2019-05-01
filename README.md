@@ -1,5 +1,5 @@
 ember-cli-imagemin
-------------------------------------------------------------------------------
+==============================================================================
 
 [![Build Status](https://travis-ci.org/andybluntish/ember-cli-imagemin.svg?branch=master)](https://travis-ci.org/andybluntish/ember-cli-imagemin)
 [![Dependency Status](https://david-dm.org/andybluntish/ember-cli-imagemin.svg)](https://david-dm.org/andybluntish/ember-cli-imagemin)
@@ -102,6 +102,12 @@ var app = new EmberApp({
   ]
 });
 ```
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
 
 License
 ------------------------------------------------------------------------------
