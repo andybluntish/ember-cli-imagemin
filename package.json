@@ -39,13 +39,14 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "broccoli-imagemin": "^2.0.1",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.0.1",
+    "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^10.0.1"
+    "imagemin-svgo": "^9.0.0",
+    "imagemin-webp": "^6.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
